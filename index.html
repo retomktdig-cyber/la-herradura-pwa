@@ -98,7 +98,7 @@ document.getElementById('btn-activar').addEventListener('click', async () => {
   try {
     const reg = await navigator.serviceWorker.ready;
     // En producción esta key viene de env
-    const vapidPublic = 'BEl62iUYgUivxIkv69yViEuiBIa-Ib9-SkvMeAtA3LFgDzkrxZJjSgSnfckjBJuBkr3qBUYIHBQFLXYp5Nksh8U';
+    const vapidPublic = '[STRIPPED 87 bytes]';
     const sub = await reg.pushManager.subscribe({
       userVisibleOnly: true,
       applicationServerKey: urlBase64ToUint8Array(vapidPublic)
