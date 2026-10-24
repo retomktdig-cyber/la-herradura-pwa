@@ -1,0 +1,23 @@
+{
+  "name": "La Herradura Carnes Especiales",
+  "short_name": "La Herradura",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#C2000B",
+  "description": "Carne de primera. Ofertas directas en tu celu sin descargar app.",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

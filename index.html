@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Herradura | Carnes Especiales - Paraná</title>
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#C2000B">
+<link rel="icon" href="/icons/icon-192.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&display=swap" rel="stylesheet">
+<style>body{font-family:'Inter',sans-serif}</style>
+</head>
+<body class="bg-[#111111] text-white antialiased">
+<header class="flex justify-between items-center px-5 py-4 bg-black border-b border-zinc-800 sticky top-0 z-50">
+  <img src="/icons/icon-192.png" alt="La Herradura" class="h-10 w-10 rounded-lg object-cover">
+  <span class="text-[10px] tracking-[0.3em] bg-[#C2000B] px-3 py-1 rounded-full font-bold">PWA OFICIAL</span>
+</header>
+
+<main class="max-w-[480px] mx-auto">
+  <!-- HERO -->
+  <section class="px-6 pt-10 pb-8 text-center">
+    <img src="/icons/icon-192.png" class="w-28 h-28 mx-auto rounded-2xl shadow-2xl mb-6 border-2 border-zinc-800" alt="La Herradura">
+    <h1 class="text-4xl font-black leading-[0.9] tracking-tighter">CARNE DE<br><span class="text-[#C2000B]">PRIMERA.</span><br>OFERTAS EN<br>TU CELU.</h1>
+    <p class="text-zinc-400 mt-4 text-sm">Sin descargar nada. Escaneaste el QR de Laprida 532 y ya estás dentro.</p>
+    
+    <div class="mt-8 bg-zinc-900 rounded-[24px] p-3 border border-zinc-800 shadow-2xl mx-auto max-w-[320px]">
+      <div class="bg-white rounded-[18px] p-3 text-black text-left">
+        <div class="flex items-center gap-2 mb-2">
+          <img src="/icons/icon-192.png" class="w-6 h-6 rounded">
+          <span class="font-bold text-xs">LA HERRADURA • ahora</span>
+        </div>
+        <p class="font-black text-sm leading-tight">🔥 Hoy 25% OFF Asado de tira</p>
+        <p class="text-xs text-zinc-600 mt-1">Solo hasta las 14hs. Mostrá esta noti en caja.</p>
+      </div>
+      <p class="text-[10px] text-zinc-500 mt-3 text-center tracking-widest">ASÍ TE VA A LLEGAR</p>
+    </div>
+  </section>
+
+  <!-- CTAs -->
+  <section class="px-6 space-y-3">
+    <button id="btn-activar" class="w-full bg-[#C2000B] hover:bg-[#a50009] text-white font-black py-5 rounded-2xl text-lg tracking-tight transition-all">
+      🔔 ACTIVAR OFERTAS
+    </button>
+    <p id="estado" class="text-center text-xs text-zinc-500 hidden">✓ Ofertas activadas. Ya te llegan directo.</p>
+    <a href="https://wa.me/5493435055447?text=Hola%20La%20Herradura!%20Vi%20la%20PWA%20en%20Laprida" class="block w-full bg-white text-black font-black py-4 rounded-2xl text-center">
+      💬 PEDIR POR WHATSAPP
+    </a>
+    <p class="text-center text-[11px] text-zinc-500">343 5055447 • Respuesta inmediata</p>
+  </section>
+
+  <!-- OFERTAS -->
+  <section class="px-6 mt-10">
+    <h2 class="font-black text-xl mb-4 tracking-tighter">OFERTAS DE HOY</h2>
+    <div class="space-y-3">
+      <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 flex justify-between items-center">
+        <div><p class="font-bold">Asado de tira</p><p class="text-xs text-zinc-400">Bandera / Ventana</p></div>
+        <span class="bg-[#C2000B] text-xs font-black px-3 py-1 rounded-full">OFERTA PUSH</span>
+      </div>
+      <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 flex justify-between items-center">
+        <div><p class="font-bold">Vacío premium</p><p class="text-xs text-zinc-400">Para la parrilla del finde</p></div>
+        <span class="bg-white text-black text-xs font-black px-3 py-1 rounded-full">TOP</span>
+      </div>
+      <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 flex justify-between items-center">
+        <div><p class="font-bold">Milanesas x 2kg</p><p class="text-xs text-zinc-400">De nalga, listas</p></div>
+        <span class="bg-zinc-700 text-xs font-bold px-3 py-1 rounded-full">CLÁSICO</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO -->
+  <section class="px-6 mt-10 mb-12 bg-[#C2000B] rounded-[24px] py-6 text-center mx-6">
+    <p class="font-black text-sm">NARCISO LAPRIDA 532 • PARANÁ</p>
+    <p class="text-xs mt-1 opacity-80">Lun a Sáb 8:30-21:30 • Dom 9:00-13:30</p>
+    <p class="text-xs mt-2 font-bold">@laherraduracarnes</p>
+  </section>
+</main>
+
+<script>
+// Registro SW
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js');
+}
+
+function urlBase64ToUint8Array(base64String) {
+  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+  const rawData = atob(base64);
+  return Uint8Array.from([...rawData].map(c => c.charCodeAt(0)));
+}
+
+document.getElementById('btn-activar').addEventListener('click', async () => {
+  const btn = document.getElementById('btn-activar');
+  const estado = document.getElementById('estado');
+  if (!('Notification' in window)) { alert('Tu navegador no soporta notificaciones'); return; }
+  const perm = await Notification.requestPermission();
+  if (perm !== 'granted') { alert('Necesitamos permiso para mandarte las ofertas'); return; }
+  try {
+    const reg = await navigator.serviceWorker.ready;
+    // En producción esta key viene de env
+    const vapidPublic = 'BEl62iUYgUivxIkv69yViEuiBIa-Ib9-SkvMeAtA3LFgDzkrxZJjSgSnfckjBJuBkr3qBUYIHBQFLXYp5Nksh8U';
+    const sub = await reg.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlBase64ToUint8Array(vapidPublic)
+    });
+    await fetch('/.netlify/functions/subscribe', { method: 'POST', body: JSON.stringify(sub) });
+    btn.textContent = '✓ OFERTAS ACTIVADAS';
+    btn.classList.replace('bg-[#C2000B]', 'bg-zinc-800');
+    estado.classList.remove('hidden');
+  } catch (e) {
+    console.error(e);
+    // Fallback demo sin backend
+    btn.textContent = '✓ OFERTAS ACTIVADAS (DEMO)';
+    estado.classList.remove('hidden');
+  }
+});
+</script>
+</body>
+</html>
